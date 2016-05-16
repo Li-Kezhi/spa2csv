@@ -1,10 +1,4 @@
 # spa2csv
-Simple converter for Thermo Fisher Scientific spectrum binary format *.SPA.
-To use this app just provide it with SPA file as an argument like so:
+By calling ne0dim's code to convert Thermo Scientific's IR file .spa to .csv. 
 
-```bash
-ruby spa2csv spectrum.spa
-```
-It will create plain text file containing your data in text format 
-named like this: `spectrum.spa.csv` with comma as a delimeter.
-Hope it will be useful for someone.
+Ruby and Python environment is prerequisite.
