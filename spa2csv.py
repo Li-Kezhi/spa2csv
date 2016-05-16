@@ -9,20 +9,23 @@ To transform Thermo Scientific .spa files to .csv
 import os
 
 rubyCodePosition = "E:\\SkyDrive\\Codes\\Ruby\\spa2csv\\spa2csv-0.1.rb"
-filesPosition = "E:\\Downloads\\likzIR\\20160510_Mn75Fe25\\7_300_C\\"
+filesPosition = "E:\\Downloads\\likzIR\\20160509_Mn10Fe0\\1_NH3_ads\\"
 prefix = "series00120"                            # Eg. series00120001.spa
-numFiles = 19
 
 ################################
 
-errorNum = 0
-for index in xrange(numFiles):
-    if(os.system("ruby " + rubyCodePosition + " " + filesPosition + prefix + "%03d" % index + ".spa") == 0):
-        print("File No. %03d completed!\n" % index)
-    else:
-        errorNum += 1
+numFiles = 0
+while True:
+    try:
+        if(os.system("ruby " + rubyCodePosition + " " + filesPosition + prefix + "%03d" % numFiles + ".spa") == 0):
+            print("File No. %03d completed!\n" % numFiles)
+        else:
+            raise IOError
+        numFiles += 1
+    except IOError:
+        break
 
 print("")
 print("============================")
-print(str(errorNum) + " error(s) occured!")
+print(str(numFiles) + " file(s) successfully converted!")
 print("============================\n")
