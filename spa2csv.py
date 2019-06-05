@@ -75,7 +75,6 @@ spectrum_float = []
 while len(spectrum) > 0:
     spectrum_float.append(struct.unpack('f', spectrum[0:4])[0])
     spectrum = spectrum[4:]
-# spectrum_float = np.array(spectrum_float)
 
 #Calculating X axis step. Maybe it's also somewhere in the file, just couldn't find it right away
 spectrum_step = (spectrum_from_value - spectrum_to_value)/(len(spectrum_float)-1)
@@ -84,13 +83,8 @@ spectrum_step = (spectrum_from_value - spectrum_to_value)/(len(spectrum_float)-1
 spectrum_xaxis = []
 for i in range(len(spectrum_float)):
     spectrum_xaxis.append(spectrum_from_value - spectrum_step*i)
-# spectrum_xaxis = np.array(spectrum_xaxis)
-
-#Prepare the final array
-# spectrum_full_array = np.vstack((spectrum_xaxis, spectrum_float)).T
 
 #Save the results
-# np.savetxt(filename + '.csv', spectrum_full_array, delimiter=',')
 f = open(filename + '.csv', 'w')
 for i in range(len(spectrum_xaxis)):
     f.write(str(spectrum_xaxis[i]) + ',' + str(spectrum_float[i]) + '\n')

@@ -9,21 +9,19 @@ To transform Thermo Scientific .spa files to .csv
 import os
 
 pythonCodePosition = "spa2csv.py"
-filesPosition = "./"
-prefix = "series0002"                            # Eg. series00120000.spa
 
 ################################
 
 numFiles = 0
-while True:
-    try:
-        if(os.system("python " + pythonCodePosition + " " + filesPosition + prefix + "%04d" % numFiles + ".spa") == 0):
-            print("File No. %04d completed!\n" % numFiles)
-        else:
-            raise IOError
+
+root = os.getcwd()
+filenames = os.listdir(root)
+
+for filename in filenames:
+    if filename.endswith('.spa'):
+        os.system('python ' + pythonCodePosition + ' ' + filename)
+        print("File No. %04d completed!\n" % (numFiles + 1))
         numFiles += 1
-    except IOError:
-        break
 
 print("")
 print("============================")
